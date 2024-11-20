@@ -1,6 +1,6 @@
 import { createMiddleware } from "hono/factory"
 
-export const underconstruction = () => {
+export const UnderConstruction = () => {
     return createMiddleware(async (c, next) => {
         // @ts-ignore
         if (!import.meta.env.PROD) {
@@ -8,8 +8,14 @@ export const underconstruction = () => {
         }
         console.log(c?.req.url.includes("localhost"))
         console.log(c?.req.url.match(/[^?]+.[^?]+.pages.dev/))
-        c.set("underconstruct", c?.req.url.includes("localhost"))
-
+        if ( 
+            // @ts-ignore
+            import.meta.env.PROD && 
+            (c?.req.url.includes("localhost")) || c?.req.url.match(/[^?]+.[^?]+.pages.dev/)
+        ) {
+            c.set("underconstruct", true)
+            c.header("X-UnderConstruction", "true")
+        }
         await next()
 
         // @ts-ignore

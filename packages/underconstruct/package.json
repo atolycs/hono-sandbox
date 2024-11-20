@@ -1,10 +1,10 @@
 {
-  "name": "underconstruct",
+  "name": "underconstruction",
   "version": "1.0.0",
   "type": "module",
   "module": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest --run",
     "prepare": "husky",
     "lint": "biome lint .",
     "format": "biome format --fix .",
@@ -15,16 +15,6 @@
   "author": "",
   "license": "MIT",
   "description": "",
-  "peerDependencies": {
-    "hono": "*"
-  },
-  "exports": {
-    ".": {
-      "import": {
-        "default": "./dist/index.js"
-      }
-    }
-  },
   "devDependencies": {
     "hono": "^4.6.11",
     "husky": "^9.1.7",
@@ -37,5 +27,16 @@
     "./src/**/*.ts": [
       "biome format --fix"
     ]
+  },
+  "peerDependencies": {
+    "hono": "*"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
   }
 }
