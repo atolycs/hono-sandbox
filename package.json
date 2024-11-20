@@ -1,0 +1,25 @@
+{
+  "name": "hono-sandbox",
+  "version": "0.0.0",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "@atolycs/biome-config": "^0.1.0",
+    "@cloudflare/workers-types": "^4.20241112.0",
+    "@types/node": "^22.9.1",
+    "jest": "^29.7.0",
+    "jest-environment-miniflare": "^2.14.4",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3"
+  }
+}
