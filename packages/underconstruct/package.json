@@ -2,13 +2,14 @@
   "name": "underconstruct",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "module": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky",
     "lint": "biome lint .",
     "format": "biome format --fix .",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "build": "tsup ./src/index.ts --format esm,cjs --dts"
   },
   "keywords": [],
   "author": "",
@@ -17,11 +18,19 @@
   "peerDependencies": {
     "hono": "*"
   },
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js"
+      }
+    }
+  },
   "devDependencies": {
     "hono": "^4.6.11",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
     "tsup": "^8.3.5",
+    "vite": "^5.4.11",
     "vitest": "^2.1.5"
   },
   "lint-staged": {
