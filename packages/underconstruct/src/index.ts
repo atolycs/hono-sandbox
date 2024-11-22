@@ -1,8 +1,22 @@
 import { createMiddleware } from "hono/factory"
+import type { Context, MiddlewareHandler } from "hono"
 import { logger } from "hono/logger"
 
-export const UnderConstruction = () => {
-    return createMiddleware(async (c, next) => {
+
+declare module 'hono' {
+    interface ContextVariable {
+        underconstruct: boolean
+    }
+}
+
+/* export type UnderConstructionVariables = {
+    Variables: {
+        underconstruct: boolean;
+    }
+} */
+
+export const UnderConstruction = ():MiddlewareHandler => {
+    return async (c:Context, next) => {
         const regexp_detect = new RegExp(/[\.]+.*\.pages\.dev/)
         // @ts-ignore
         if (!import.meta.env.PROD) {
@@ -24,11 +38,12 @@ export const UnderConstruction = () => {
         if (import.meta.env.DEV) {
             c.set("underconstruct", true)
         }
-        await next()
 
         // @ts-ignore
         if (!import.meta.env.PROD) {
             console.log(`[${c.req.method}] Middleware End URL: ${c.req.url}`)
         }
-    })
+        await next()
+        return
+    }
 }

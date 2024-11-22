@@ -1,8 +1,9 @@
 {
-  "name": "underconstruction",
+  "name": "@atolycs/hono-underconstruction",
   "version": "1.0.0",
   "type": "module",
   "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "vitest --run",
     "prepare": "husky",
@@ -24,9 +25,7 @@
     "vitest": "^2.1.5"
   },
   "lint-staged": {
-    "./src/**/*.ts": [
-      "biome format --fix"
-    ]
+    "./src/**/*.ts": ["biome format --fix"]
   },
   "peerDependencies": {
     "hono": "*"
